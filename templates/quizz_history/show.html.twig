@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+
+    <br>
+    <h2 class="text-center">Historique des quizz passés</h1>
+    <br>
+
+    <section class="container" style="margin-top: 15px;">
+        <div class="row justify-content-around" style="margin-top: 25px;">
+
+            {% for quizz in quizzHistory %}
+
+                {% if quizz.numberOfQuestions == quizz.score %}
+
+                <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+
+                {% elseif (quizz.numberOfQuestions - quizz.score) <= (quizz.numberOfQuestions / 2) %}
+
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+
+                {% else %}
+
+                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+
+                {% endif %}
+                
+                <div class="card-header text-center">{{ quizz.categorie }}</div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ quizz.score }} / {{ quizz.numberOfQuestions }}</h5>
+                    <hr>
+                    <p class="card-text text-center">Quizz passé le : {{ quizz.datePassed }}</p>
+                </div>
+                </div> 
+            
+            {% endfor %}
+        
+        </div>
+    </section>
+
+{% endblock %}

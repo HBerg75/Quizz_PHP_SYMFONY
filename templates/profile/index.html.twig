@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br><br><br>
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            <div class="card bg-light">
+                <div class="card-body">
+                    
+                    <h1 class="text-center">Modifier son profil</h1>
+                    <br><br>
+                    <a href="/profile/{{ app.user.id }}/editMail">Modifier son adresse email</a>
+                    <br><br>
+                    <a href="/profile/{{ app.user.id }}/editPassword">Modifier son mot de passe</a>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

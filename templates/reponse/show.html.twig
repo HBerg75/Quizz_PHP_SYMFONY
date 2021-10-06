@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réponse{% endblock %}
+
+{% block body %}
+    <br>
+    <h1>Réponse</h1>
+    <br>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reponse.id }}</td>
+            </tr>
+            <tr>
+                <th>Question</th>
+                <td>{{ reponse.question }}</td>
+            </tr>
+            <tr>
+                <th>Réponse</th>
+                <td>{{ reponse.reponse }}</td>
+            </tr>
+            <tr>
+                <th>Bonne Réponse</th>
+                <td>{{ reponse.reponseExpected ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reponse_index') }}">Retour</a>
+
+    <a href="{{ path('reponse_edit', {'id': reponse.id}) }}">Modifier</a>
+
+    {{ include('reponse/_delete_form.html.twig') }}
+{% endblock %}

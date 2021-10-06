@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Réponse{% endblock %}
+
+{% block body %}
+    <br>
+    <h1>Créer une nouvelle Réponse</h1>
+    <br>
+
+    {{ include('reponse/_form.html.twig') }}
+    <br>
+    <a href="{{ path('reponse_index') }}">Retour</a>
+{% endblock %}

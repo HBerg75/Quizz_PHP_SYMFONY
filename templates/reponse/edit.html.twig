@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Réponse{% endblock %}
+
+{% block body %}
+    <br>
+    <h1>Modifier une Réponse</h1>
+    <br>
+
+    {{ include('reponse/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+    
+    {{ include('reponse/_delete_form.html.twig') }}
+    <br>
+    <a href="{{ path('reponse_index') }}">Retour</a>
+
+{% endblock %}

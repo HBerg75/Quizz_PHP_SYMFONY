@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quizz{% endblock %}
+
+{% block body %}
+    <section class="container" style="margin-top: 15px;">
+        {% if score|default %}
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading text-center">Vous avez passé le quizz {{ currentCategorie[0].name }}</h4>
+                <p class="text-center">Votre score est de : {{ score }}</p>
+            </div>
+        {% endif %}
+        {% if scoreTotal|default %}
+            {% for quizzScore in scoreTotal %}
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading text-center">Vous avez passé le quizz {{ quizzScore['categorie'] }}</h4>
+                    <p class="text-center">Votre score est de : {{ quizzScore['score'] }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if is_granted('ROLE_USER') %} 
+            <h4 style="text-align: center;">
+                <a href="{{ path('quizz_new_categorie') }}" class="btn btn-primary">Créer une nouvelle catégorie</a>
+                <a href="{{ path('quizz_new_question') }}" class="btn btn-primary">Créer une nouvelle question</a>
+                <a href="{{ path('quizz_new_response') }}" class="btn btn-primary">Créer une nouvelle réponse</a>
+            </h4>
+        {% endif %}
+        <div class="row justify-content-around" style="margin-top: 25px;">
+        {% for categorie in categories %}
+            <div class="card rounded" style="width: 18rem; margin-bottom: 15px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ categorie.name }}</h5>
+                        <a href="{{ path('quizz_get', {'id': categorie.id}) }}" class="btn btn-success">Jouer</a>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+{% endblock %}

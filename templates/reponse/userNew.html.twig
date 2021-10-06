@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reponse{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br>
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            <div class="card bg-light">
+                <div class="card-body">
+                    
+                    <h1 class="text-center">Créer une nouvelle réponse</h1>
+                    <br>
+                    {{ include('reponse/_form.html.twig') }}
+                    <br>
+                    <a href="{{ path('quizz_index') }}">Retour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% if is_granted('ROLE_ADMIN') %}    
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ app.user.email }}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/profile">Modifier profil</a>
+              <a class="dropdown-item" href="/quizz/history/{{ app.user.id }}">Historique des quizz</a>
+            </div>
+          </li>
+          
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/admin/user/">Utilisateurs</a>
+              <a class="dropdown-item" href="/admin/categorie/">Catégories</a>
+              <a class="dropdown-item" href="/admin/question/">Questions</a>
+              <a class="dropdown-item" href="/admin/reponse/">Réponses</a>
+              <a class="dropdown-item" href="/admin/quizz/history">Historique des quizz</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quizz">Quizz</a>
+          </li>
+        {% elseif app.user %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ app.user.email }}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/profile">Modifier profil</a>
+              <a class="dropdown-item" href="/quizz/history/{{ app.user.id }}">Historique des quizz</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quizz">Quizz</a>
+          </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Inscription</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Connexion</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Quizz
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/quizz">Quizz</a>
+            <a class="dropdown-item" href="/quizz/session/history">Historique</a>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index historique{% endblock %}
+
+{% block body %}
+    <br>
+    <h1>Index Historique</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Utilisateur</th>
+                <th>Score</th>
+                <th>Nombre de questions</th>
+                <th>Categorie</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quizz in quizzHistory %}
+            <tr>
+                <td>{{ quizz.id }}</td>
+                <td>{{ quizz.user.email }}</td>
+                <td>{{ quizz.score }}</td>
+                <td>{{ quizz.numberOfQuestions }}</td>
+                <td>{{ quizz.categorie }}</td>
+                <td>{{ quizz.datePassed }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

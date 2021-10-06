@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Question index{% endblock %}
+{% block body %}
+{% set currentQuestion = 1 %}
+{% set currentAnswer = 1 %}
+    <form class="container" method="POST" style="margin-top: 15px;">
+    <h1 style="text-align: center;">Questionnaire</h1>
+        <div class="row justify-content-around" style="margin-top: 25px;">
+        {% for question in questions %}
+            <div class="card" style="width: 18rem; margin-bottom: 15px;">
+                <div class="card-header" style="background-color: dodgerblue;">
+                    <strong>
+                        {{ question.question }}
+                    </strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for answer in question.reponses %}
+                        <li class="list-group-item">
+                            <input type="radio" name="question{{ currentQuestion }}" id="reponse{{ currentAnswer }}" value="{{ answer }}" required>
+                            <label for="reponse{{ currentAnswer }}"> {{ answer }} </label>
+                        </li>
+                        {% set currentAnswer = currentAnswer + 1 %}
+                    {% endfor %}
+                    {% set currentQuestion = currentQuestion + 1 %}
+                </ul>
+            </div>
+        {% else %}
+            <div>
+                <td colspan="4">no records found</td>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="col-md-12 text-center" style="margin-top: 30px; margin-bottom: 30px;">
+            <input type="submit" class="btn btn-success" value="Envoyer" />
+        </div>
+    </form>
+{% endblock %}
